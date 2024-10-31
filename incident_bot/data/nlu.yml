@@ -1,0 +1,22 @@
+version: "3.1"
+nlu:
+- intent: report_phishing
+  examples: |
+    - I received a phishing email
+    - There's a fake website asking for my login
+    - Someone is pretending to be our CEO
+    - Got an email requesting sensitive information
+- intent: report_malware
+  examples: |
+    - My computer is infected with [malware](issue)
+    - My [laptop](device) is infected with [malware](issue)
+    - Detected a [virus](issue) on my [workstation](device)
+    - My [desktop](device) has a [Trojan](issue)
+    - My antivirus flagged a Trojan
+    - I think I downloaded something malicious
+- intent: report_unauthorized_access
+  examples: |
+    - I noticed unauthorized access to my account
+    - Someone logged into my system without permission
+    - Unrecognized login detected
+    - There was a breach in my account

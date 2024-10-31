@@ -1,0 +1,46 @@
+version: "3.1"
+
+intents:
+  - report_phishing
+  - report_malware
+  - report_unauthorized_access
+  - iamabot
+  - goodbye
+
+responses:
+  utter_iamabot:
+    - text: "I am a robot that is chatting."
+  utter_goodbye:
+    - text: "See ya."
+  utter_report_phishing:
+    - text: "Thank you for reporting. Can you provide the sender's email or the suspicious link?"
+  utter_report_malware:
+    - text: "Sorry to hear that. Please describe the malware detection and any actions you've taken."
+  utter_report_unauthorized_access:
+    - text: "We'll assist you immediately. When did you notice the unauthorized access?"
+
+entities:
+  - device
+  - issue
+  - incident_type
+
+slots:
+  device:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: device
+  issue:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: issue
+  incident_type:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: incident_type
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
