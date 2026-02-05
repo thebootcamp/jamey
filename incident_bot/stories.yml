@@ -1,0 +1,7 @@
+- story: incident report with sentiment analysis
+  steps:
+  - intent: report_issue
+  - action: action_analyze_sentiment
+  - slot_was_set:
+    - sentiment: negative
+  - action: utter_acknowledge_issue

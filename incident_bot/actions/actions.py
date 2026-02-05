@@ -1,3 +1,4 @@
+
 # This files contains your custom actions which can be used to run
 # custom Python code.
 #
@@ -25,3 +26,26 @@
 #         dispatcher.utter_message(text="Hello World!")
 #
 #         return []
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+class ActionAnalyzeSentiment(Action):
+
+    def name(self) -> Text:
+        return "action_analyze_sentiment"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        analyzer = SentimentIntensityAnalyzer()
+        user_message = tracker.latest_message.get('text')
+        sentiment = analyzer.polarity_scores(user_message)
+
+        if sentiment['compound'] >= 0.05:
+            sentiment_label = "positive"
+        elif sentiment['compound'] <= -0.05:
+            sentiment_label = "negative"
+        else:
+            sentiment_label = "neutral"
+
+        # Store sentiment in a slot
+        return [SlotSet("sentiment", sentiment_label)]

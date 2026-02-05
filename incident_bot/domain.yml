@@ -6,7 +6,17 @@ intents:
   - report_unauthorized_access
   - iamabot
   - goodbye
-
+- intent: greet
+  examples: |
+    - Hello
+    - Hi there
+    - Hey
+responses:
+  utter_greet:
+    - text: "Hello! How can I assist you today?"
+responses:
+  utter_default:
+    - text: "I'm sorry, I didn't quite catch that. Could you please rephrase?"
 responses:
   utter_iamabot:
     - text: "I am a robot that is chatting."
@@ -18,6 +28,15 @@ responses:
     - text: "Sorry to hear that. Please describe the malware detection and any actions you've taken."
   utter_report_unauthorized_access:
     - text: "We'll assist you immediately. When did you notice the unauthorized access?"
+  utter_acknowledge_issue:
+    - text: "I'm sorry to hear you're experiencing issues. Let's work together to resolve this."  # For negative sentiment
+    - text: "I'm glad you're reaching out. How can I assist you today?"  # For neutral sentiment
+    - text: "It's great to hear from you! How can I help?"  # For positive sentiment
+  utter_provide_malware_info:
+    - text: "Malware can be harmful to your system. I recommend running a full system scan with your antivirus software."
+responses:
+  utter_default:
+    - text: "I'm sorry, I didn't quite catch that. Could you please rephrase?"
 
 entities:
   - device
@@ -44,3 +63,11 @@ slots:
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
+
+actions:
+  - action_analyze_sentiment
+
+slots:
+  sentiment:
+    type: text
+    influence_conversation: false

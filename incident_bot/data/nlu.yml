@@ -20,3 +20,8 @@ nlu:
     - Someone logged into my system without permission
     - Unrecognized login detected
     - There was a breach in my account
+- intent: ask_about_malware
+  examples: |
+    - What can I do about malware?
+    - How do I remove a virus?
+    - Tell me about malware threats.
